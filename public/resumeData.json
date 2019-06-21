@@ -2,9 +2,9 @@
   "main": {
     "name":"Taber Fisher",
     "occupation":"Software Engineer",
-    "description":"I am a student at Virgina Tech majoring in Computer Science. I have a passion for Artifical Intellegence, Rocketry, and Rock climbing",
+    "description":"I have a passions for Artifical Intellegence, Space Exploration, History, Rock Climbing, Photography, and the Environment",
     "image":"profilepic.jpg",
-    "bio":"I am currently a senior studying computer science at Virginia Tech. I have the most experince using machine learning and Artifical Intellegence to solve tricky problems. The langueses I use the most are Python, Java, C#, and JavaScript",
+    "bio":"I am currently a senior studying Computer Science at Virginia Tech. I have the most experince using Machine Learning and Artifical Intellegence to solve tricky problems. The languages I use the most are Python, Java, C#, and JavaScript",
     "contactmessage":"Here is where you should write your message to readers to have them get in contact with you.",
     "email": "taberf@vt.edu",
     "phone": "555-555-5555",
@@ -15,7 +15,7 @@
       "zip": "24061"
     },
     "website": "https://www.linkedin.com/in/taber-fisher-979a07113/",
-    "resumedownload":"https://www.linkedin.com/in/taber-fisher-979a07113/",
+    "resumedownload":"./images/TaberFisherResume.pdf",
     "social":[
       {
         "name":"linkedin",
@@ -41,7 +41,7 @@
         "school":"Virginia Tech",
         "degree":"Computer Science",
         "graduated":"December 2019",
-        "description":"Majoring in Computer Science with a Mathematics Minor, Part of the Honors College, Studied abroad in Spring of 2016"
+        "description":"Majoring in Computer Science with a Mathematics Minor. Studied abroad during Spring of 2016 with the Presidential Global Scholars program in Riva San Vitale, Switzerland."
       }
     ],
     "work":[
@@ -126,16 +126,22 @@
   "portfolio":{
     "projects": [
       {
-        "title":"Rocketry@VT Website",
-        "category":"The Website that I helped design and build for my rocketry team",
-        "image":"canadian-wanderlust.jpg",
-        "url":"https://www.canadianwanderlust.com"
+        "title":"PolitiGauge",
+        "category":"A Data Sciene project turned into Chrome Extension tyring to detect poltical bias in articles",
+        "image":"politigauge.png",
+        "url":"https://github.com/eltabre/PolitiGauge"
       },
       {
         "title":"Rocketry@VT Github",
         "category":"A team repository where the machine learning that I do on rockets is housed",
-        "image":"fury-fighting-gear.jpg",
-        "url":"http://www.timbakerdev.com"
+        "image":"rocketryicon.png",
+        "url":"https://github.com/RocketryVT"
+      },
+      {
+        "title":"Rocketry@VT Website",
+        "category":"The Website that I helped design and build for my rocketry team",
+        "image":"rocketryicon.png",
+        "url":"https://github.com/RocketryVT"
       }
     ]
   }
