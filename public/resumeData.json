@@ -4,7 +4,7 @@
     "occupation":"Software Engineer",
     "description":"I have a passions for Artifical Intellegence, Space Exploration, History, Rock Climbing, Photography, and the Environment",
     "image":"profilepic.jpg",
-    "bio":"I am currently a senior studying Computer Science at Virginia Tech. I have the most experince using Machine Learning and Artifical Intellegence to solve tricky problems. The languages I use the most are Python, Java, C#, and JavaScript",
+    "bio":"I am a senior studying Computer Science at Virginia Tech. Most of my experince is using Machine Learning and Artifical Intellegence to tackle difficult problems. The languages I am most comfortable with are Python, Java, C#, and JavaScript.",
     "contactmessage":"Here is where you should write your message to readers to have them get in contact with you.",
     "email": "taberf@vt.edu",
     "phone": "555-555-5555",
@@ -49,19 +49,19 @@
         "company":"Lockheed Martin",
         "title":"Software Development Intern",
         "years":"May 2018 - Present",
-        "description":"Created image recognition software that used TensorFlow for vehicle detection on satellite and aerial imagery with an accuracy of 98 percent, Developed recommendation algorithm to assist users in choosing overlays to place on maps"
+        "description":"This year I am working with dynamic neural networks and other life-long learning methods to get better performance of online learning algorithms. Last summer, I created image recognition software that used TensorFlow for vehicle detection on satellite and aerial imagery with an accuracy of 98 percent, as well as developing a proof-of-concept recommendation algorithm to assist users in choosing overlays to place on maps."
       },
       {
         "company":"Rocketry at Virgina Tech",
         "title":"Lead Software Architect",
         "years":"September 2016 - Present",
-        "description":"Used the Google Cloud Platform to build a machine learning platform to analyze data pulled from flight sensors to predict when anomalies occur and when active drag flaps should be deployed, Designed active drag system software in C++ so the rocket hit an exact target height, Authored a safety report on Hybrid Rocket Engines (HRE) so the team could begin development on construction of our own HRE for the IREC competition"
+        "description":"I helped to design active drag system software in C++ so our rocket hit an exact target height, author a safety report on Hybrid Rocket Engines (HRE) so the team could begin development on construction of our own HRE for the IREC competition, and create the new team website. I am personally working on developing an AI algorithm"
       },
       {
         "company":"AMC Theatres",
         "title":"Applications & Data Systems Intern",
         "years":"May 2016 - August 2016, May 2017 - August 2017",
-        "description":"Created and presented a movie recommendation engine in Python to upper level management that is undergoing testing for worldwide implementation on the AMC website, Built an app in C# that streamlined the process for adding new members to the AMC Stubs program, Utilized React.js, Relay, and GraphQL to design multiple features on the AMC website, including making the site more handicap accessible, modernizing the search bar, and hybridizing the ticket purchasing page"
+        "description":"I created and presented a movie recommendation engine in Python to upper level management that is undergoing testing for worldwide implementation on the AMC website. I also built an app in C# that streamlined the process for adding new members to the AMC Stubs program. Lastly I, utilized React.js, Relay, and GraphQL to design multiple features on the AMC website, including making the site more handicap accessible, modernizing the search bar, and hybridizing the ticket purchasing page."
       }
     ],
     "research":[
@@ -69,19 +69,19 @@
         "company":"Neural Dynamics Lab",
         "title":"Undergraduate Researcher",
         "years":"April 2018 - Present",
-        "description":"Researched speeding up training phase of a Brain Computer Interface (BCI) by using deep learning"
+        "description":"At the Nueral Dynamics Lab I helped with studying different deep learning approaches to classifing EEG and iEEG data for brain-computer interface tasks. "
       },
       {
         "company":"Assistive Robotics Lab (ARL)",
         "title":"Undergraduate Researcher",
         "years":"August 2018 - Present",
-        "description":"Created a program using deep neural networks for walking prediction on a person's step with a 95% accuracy"
+        "description":"In this lab, I am researching gait prediction. I comparing different machine learning algorithms, such as K-nearest neighbors and support vector machines, and deep learning modles, for example dense neural networks and long-short term memory (LTSM), to find what algorithm will work the most efficiently with the highest accuracy."
       },
       {
         "company":"Software Innovations Lab",
         "title":"Undergraduate Researcher",
         "years":"November 2017 - August 2018",
-        "description":"Won 2nd place at Virginia Tech Undergraduate Computer Science Symposium for research in creating a musical score search engine that should search MusicXML files"
+        "description":"The team I was a part of won 2nd place at Virginia Tech Undergraduate Computer Science Symposium for research in creating a musical score search engine that should search MusicXML files."
       }
     ],
     "skills":[
