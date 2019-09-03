@@ -49,13 +49,13 @@
         "company":"Lockheed Martin",
         "title":"Software Development Intern",
         "years":"May 2018 - Present",
-        "description":"This year I am working with dynamic neural networks and other life-long learning methods to get better performance of online learning algorithms. Last summer, I created image recognition software that used TensorFlow for vehicle detection on satellite and aerial imagery with an accuracy of 98 percent, as well as developing a proof-of-concept recommendation algorithm to assist users in choosing overlays to place on maps."
+        "description":"This year, I worked with Generative Adversarial Networks (GANs) to generate data to enlarge datasets that are too small for computer vision training. I also designed a text summarization program that will ingest articles and generate summaries for corporate scouting. Last summer, I created image recognition software that used TensorFlow for vehicle detection on satellite and aerial imagery with an accuracy of 98 percent, as well as developing a proof-of-concept recommendation algorithm to assist users in choosing overlays to place on maps."
       },
       {
         "company":"Rocketry at Virgina Tech",
         "title":"Lead Software Architect",
-        "years":"September 2016 - Present",
-        "description":"On this team, I am personally working on developing a real-time object recognition algorithm that will work during the rocket's flight. I have also helped to design active drag system software in C++ so our rocket hit an exact target height, author a safety report on Hybrid Rocket Engines (HRE) so the team could begin development on construction of our own HRE for the IREC competition, and create the new team website."
+        "years":"September 2016 - September 2019",
+        "description":"On this team, I personally worked on developing a real-time object recognition algorithm that will work during the rocket's flight. I have also helped to design active drag system software in C++ so our rocket hit an exact target height, author a safety report on Hybrid Rocket Engines (HRE) so the team could begin development on construction of our own HRE for the IREC competition, and create the new team website."
       },
       {
         "company":"AMC Theatres",
@@ -66,16 +66,16 @@
     ],
     "research":[
       {
-        "company":"Neural Dynamics Lab",
-        "title":"Undergraduate Researcher",
-        "years":"April 2018 - Present",
-        "description":"At the Nueral Dynamics Lab I helped with studying different deep learning approaches to classifing EEG and iEEG data for brain-computer interface tasks. "
-      },
-      {
         "company":"Assistive Robotics Lab (ARL)",
         "title":"Undergraduate Researcher",
         "years":"August 2018 - Present",
         "description":"In this lab, I am researching gait prediction. I comparing different machine learning algorithms, such as K-nearest neighbors and support vector machines, and deep learning modles, for example dense neural networks and long-short term memory (LTSM), to find what algorithm will work the most efficiently with the highest accuracy."
+      },
+      {
+        "company":"Neural Dynamics Lab",
+        "title":"Undergraduate Researcher",
+        "years":"April 2018 - May 2019",
+        "description":"At the Nueral Dynamics Lab I helped with studying different deep learning approaches to classifing EEG and iEEG data for brain-computer interface tasks. We published \"A comparative study of motor imagery based BCI classifiers on EEG and iEEG Data\" in GlobalSIP 2019 proceedings."
       },
       {
         "company":"Software Innovations Lab",
