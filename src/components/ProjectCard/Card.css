@@ -1,0 +1,31 @@
+.card {
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #130d0d;
+    border-radius: 10px;
+    flex-grow: 1;
+    width: 70%; 
+    height: 80%;
+    margin-right: 5%;
+    margin-top: 5%;
+    object-fit: contain;
+    overflow: hidden;
+  }
+
+  .card img {
+    display: block; /* Removes any default inline spacing beneath the image */
+    max-width: 50%; /* Adjust this value to control the maximum width of the image within the card */
+    max-height: 30%; /* Adjust this value to control the maximum height of the image within the card */
+    width: auto; /* Scales the width automatically to maintain the aspect ratio */
+    height: auto; /* Scales the height automatically to maintain the aspect ratio */
+    object-fit: contain; /* Ensures the entire image is visible, might add letterboxing */
+    margin: auto;
+  }
+
+.card h3 {
+    margin: 0 0 10px 0;
+}
+
+.card p {
+    margin: 0;
+}

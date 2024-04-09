@@ -1,13 +1,8 @@
-## Personal Website
-This is my personal website project. I used Tim Bakers react website template to start out with
+# React + Vite
 
-### TODO
-1. Update wording on site
-2. Change Font color on homepage
-3. Get download and contact form working
-4. Remove Jquery from site, try using other react libraries
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Build Directions
-1. Do a predeploy
-2. Do a deploy
-3. Make sure to just do development on dev branch and let master be the deployment branch
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

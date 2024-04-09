@@ -1,0 +1,66 @@
+.App {
+  display: flex;
+  align-items: flex-start; 
+  justify-content: flex-start;
+  gap: 20px;
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  width: 100vw;
+  background: linear-gradient(to right, #1a1c2d, #32353C); /* Example gradient */
+}
+
+
+.App::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2px; /* Length of the border line */
+  height: 95%; /* Thickness of the border line */
+  background: white; /* Color of the border line */
+  margin-bottom: 2%;
+  margin-left: 3%;
+}
+
+.App::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 97.5%; /* Thickness of the border line */
+  height: 2px; /* Length of the border line */
+  background: white; /* Color of the border line */
+  margin-top: 3%;
+  margin-right: 2%;
+}
+
+.Navigation {
+  margin-left: 5%; /* Adjust as needed */
+  margin-top: 3%;
+  flex-grow: 0;
+}
+
+.typewriter h2 {
+  min-height: 50px;
+  position: relative; 
+}
+
+nav ul {
+  list-style: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+}
+
+nav ul li {
+  margin-bottom: 1em; /* Space out the links */
+}
+
+nav ul li a {
+  text-decoration: none; /* Optional: removes the underline from links */
+  color: white; /* Adjust link color as needed */
+
+  /* Add more styles as needed */
+}
+
+nav ul li a:hover {
+  color: rgb(9, 40, 216);
+}
