@@ -1,18 +1,10 @@
 import { useState, useEffect } from 'react';
-import {Link} from "react-router-dom";
 
 import Card from '../../components/ProjectCard/Card'
 
 import './HomePage.css';
 
 const roles = ["Game Developer", "Software Engineer", "AI Researcher"];
-
-const links = [
-  { title: "Projects", path: "/projects" },
-  { title: "About", path: "/about" },
-  { title: "Behind the Code", path: "/behind-the-code" },
-  { title: "Resume", path: "/resume"}
-];
 
 function HomePage() {
   const [currentRole, setCurrentRole] = useState('');
@@ -63,15 +55,6 @@ function HomePage() {
             {currentRole}
           </h2>
         </div>
-        <nav>
-          <ul>
-            {links.map(link => (
-              <li key={link.title}>
-                <a href={link.path}>{link.title}</a> {/* Replace with <Link to={link.path}>{link.title}</Link> if using React Router */}
-              </li>
-            ))}
-          </ul>
-        </nav>
       </div>
 
       <Card />

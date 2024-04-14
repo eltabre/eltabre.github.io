@@ -9,6 +9,41 @@
   background: linear-gradient(to right, #1a1c2d, #32353C); /* Example gradient */
 }
 
+.App {
+  display: flex;
+  align-items: flex-start; 
+  justify-content: flex-start;
+  gap: 20px;
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  width: 100vw;
+  background: linear-gradient(to right, #1a1c2d, #32353C); /* Example gradient */
+}
+
+
+.App::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2px; /* Length of the border line */
+  height: 95%; /* Thickness of the border line */
+  background: white; /* Color of the border line */
+  margin-bottom: 2%;
+  margin-left: 3%;
+}
+
+.App::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 97.5%; /* Thickness of the border line */
+  height: 2px; /* Length of the border line */
+  background: white; /* Color of the border line */
+  margin-top: 3%;
+  margin-right: 2%;
+}
 
 .App::before {
   content: '';

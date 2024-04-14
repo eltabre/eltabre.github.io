@@ -1,0 +1,86 @@
+.navigation {
+  position: fixed; /* Fixed position to the side of the page */
+  top: 0; /* Align to the top */
+  bottom: 0; /* Align to the bottom */
+  left: .5%; /* Align to the left */
+  width: 50px; /* Set the width of the navigation bar */
+  background-color: rgba(0, 0, 0, 0); 
+  padding-top: 5%; /* Add some spacing on the top */
+  z-index: 1000;
+}
+
+.navigation ul {
+  list-style-type: none;
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+
+.navigation li {
+  display: block; /* Stack the links vertically */
+  margin-bottom: 15px; /* Add space between the links */
+}
+
+.navigation .nav-link {
+  display: flex; /* Align icon and text */
+  align-items: center; /* Center items vertically */
+  text-decoration: none; /* Remove text underline */
+  color: #fff; /* White text color */
+  padding: 10px; /* Add some padding */
+  position: relative;
+
+}
+
+.navigation .nav-link .icon {
+  display: block; /* Ensure icon takes up space */
+  margin-right: 10px; /* Space between icon and text */
+  z-index: 1010;
+}
+
+.navigation .nav-text {
+  /* display: none; Remove this line */
+  visibility: hidden; /* Hide the text, but keep it in the layout */
+  opacity: 0; /* Start with the text fully transparent */
+  position: absolute;
+  top: 0;
+  left: 100%; /* Start from the right of the icon */
+  background-color: rgba(128, 128, 128, 1); /* Grey background with some transparency */
+  color: white; /* Text color */
+  white-space: nowrap; /* Ensure the text does not wrap */
+  padding: 10px; /* Add some padding around the text */
+  transform: translateX(-100%); /* Initially position the text off-screen to the left */
+  transition: visibility 0s ease 0.3s, opacity 0.3s ease, transform 0.3s ease; /* Transition for smooth sliding in */
+}
+
+.navigation .nav-link .icon:hover {
+  background-color: #4caf50;
+}
+
+.navigation .nav-link .nav-text {
+  position: absolute;
+  top: 0;
+  left: -10px; /* Start from the right of the icon */
+  background-color: rgba(128, 128, 128, 1); /* Grey background with some transparency */
+  color: white; /* Text color */
+  white-space: nowrap; /* Ensure the text does not wrap */
+  padding: 7px; /* Add some padding around the text */
+  transform: translateX(-100%); /* Initially position the text off-screen to the left */
+  transition: transform 0.5s ease, opacity 0.3s ease; /* Transition for smooth sliding in */
+  opacity: 0; /* Start with the text fully transparent */
+  z-index: 1001;
+  border-radius: 0 10px 10px 0; 
+  width: 350px;
+  text-align: center;
+}
+
+.navigation .nav-link:hover .nav-text {
+  visibility: visible; /* Make the text part of the layout so it can be transitioned */
+  opacity: 1; /* Make the text fully visible on hover */
+  transform: translateX(0); /* Slide in the text on hover */
+  transition-delay: 0s; /* Apply transitions immediately on hover */
+  z-index: 1001;
+}
+
+.navigation .nav-link-active {
+  background-color: #4caf50; /* Highlight color for the active link */
+}
+
