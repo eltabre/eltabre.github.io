@@ -1,0 +1,34 @@
+.project-card {
+    transition: transform 0.4s, height 0.4s, width 0.4s;
+    cursor: pointer;
+    /* Base styles for the card */
+  }
+  
+  .project-card .card-inner {
+    transition: transform 1s;
+    transform-style: preserve-3d;
+  }
+  
+  .project-card.expanded .card-inner {
+    position: fixed; /* or absolute */
+    top: 10%;    /* Padding from the top */
+    left: 5%;   /* Padding from the left */
+    right: 10%;  /* Padding from the right */
+    bottom: 10%; /* Padding from the bottom */
+    z-index: 10; /* make sure it's on top */
+    transform: rotateY(180deg); /* for flip effect */
+    background: #363434; /* Expanded background */
+    overflow-y: auto; /* If your content is long */
+    /* Additional styling for expanded content */
+  }
+  
+  .card-front {
+    backface-visibility: hidden;
+  }
+  
+  .expanded-content {
+    backface-visibility: visible;
+    transform: rotateY(180deg); /* align with the flipped perspective */
+    /* Styles for the expanded content */
+  }
+  

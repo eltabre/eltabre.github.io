@@ -1,6 +1,6 @@
 function AboutPage() {
   return (
-    <div>
+    <div className="Navigation">
       <h1>About Page</h1>
       <p>Welcome to the home page!</p>
     </div>
