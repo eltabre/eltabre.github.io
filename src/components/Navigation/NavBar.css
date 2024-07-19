@@ -51,10 +51,6 @@
   transition: visibility 0s ease 0.3s, opacity 0.3s ease, transform 0.3s ease; /* Transition for smooth sliding in */
 }
 
-.navigation .nav-link .icon:hover {
-  background-color: #4caf50;
-}
-
 .navigation .nav-link .nav-text {
   position: absolute;
   top: 0;
@@ -78,9 +74,5 @@
   transform: translateX(0); /* Slide in the text on hover */
   transition-delay: 0s; /* Apply transitions immediately on hover */
   z-index: 1001;
-}
-
-.navigation .nav-link-active {
-  background-color: #4caf50; /* Highlight color for the active link */
 }
 

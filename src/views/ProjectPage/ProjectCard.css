@@ -1,34 +1,68 @@
-.project-card {
-    transition: transform 0.4s, height 0.4s, width 0.4s;
-    cursor: pointer;
-    /* Base styles for the card */
+.card {
+  width: 24rem;
+  height: 36rem;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  color: $color-primary-white;
+  box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
+ 
+  img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    transition: opacity .2s ease-out;
+  }
+
+  h2 {
+    position: absolute;
+    inset: auto auto 30px 30px;
+    margin: 0;
+    transition: inset .3s .3s ease-out;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
   }
   
-  .project-card .card-inner {
-    transition: transform 1s;
-    transform-style: preserve-3d;
+  p, a {
+    position: absolute;
+    opacity: 0;
+    max-width: 80%;
+    transition: opacity .3s ease-out;
   }
   
-  .project-card.expanded .card-inner {
-    position: fixed; /* or absolute */
-    top: 10%;    /* Padding from the top */
-    left: 5%;   /* Padding from the left */
-    right: 10%;  /* Padding from the right */
-    bottom: 10%; /* Padding from the bottom */
-    z-index: 10; /* make sure it's on top */
-    transform: rotateY(180deg); /* for flip effect */
-    background: #363434; /* Expanded background */
-    overflow-y: auto; /* If your content is long */
-    /* Additional styling for expanded content */
+  p {
+    inset: auto auto 80px 30px;
   }
   
-  .card-front {
-    backface-visibility: hidden;
+  a {
+    inset: auto auto 40px 30px;
+    color: inherit;
+    text-decoration: none;
   }
   
-  .expanded-content {
-    backface-visibility: visible;
-    transform: rotateY(180deg); /* align with the flipped perspective */
-    /* Styles for the expanded content */
+  &:hover h2 {
+    inset: auto auto 220px 30px;
+    transition: inset .3s ease-out;
   }
   
+  &:hover p, &:hover a {
+    opacity: 1;
+    transition: opacity .5s .1s ease-in;
+  }
+  
+  &:hover img {
+    transition: opacity .3s ease-in;
+    opacity: 1;
+  }
+
+}
+
+.material-symbols-outlined {
+  vertical-align: middle;
+}
