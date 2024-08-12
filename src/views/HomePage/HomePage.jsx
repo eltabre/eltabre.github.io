@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import Card from '../../components/ProjectCard/Card'
+// import Card from '../../components/ProjectCard/Card'
 
 import './HomePage.css';
 
@@ -47,17 +47,11 @@ function HomePage() {
   }, [currentRole, isDeleting, charIndex, roleIndex]);
 
   return (
-    <div className="App">
-      <div className="Navigation">
-        <h1>Taber Fisher</h1>
-        <div className="typewriter">
-          <h2>
-            {currentRole}
-          </h2>
-        </div>
+    <div className="Home">
+      <div className='flexbox-content'>
+        <h1 className="flexbox-child1">test</h1>
+        <h1 className="flexbox-child2">test 1</h1>
       </div>
-
-      <Card />
     </div>
   );
 }
