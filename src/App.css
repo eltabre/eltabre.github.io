@@ -18,7 +18,7 @@
   position: relative;
   height: 100vh; /* Full viewport height */
   width: 100vw;
-  background: linear-gradient(to right, #1a1c2d, #32353C); /* Example gradient */
+  background: linear-gradient(to right, #494949, #32353C); /* Example gradient */
 }
 
 .App::after {

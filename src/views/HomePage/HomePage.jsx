@@ -1,7 +1,4 @@
 import { useState, useEffect } from 'react';
-
-// import Card from '../../components/ProjectCard/Card'
-
 import './HomePage.css';
 
 const roles = ["Game Developer", "Software Engineer", "AI Researcher"];
@@ -33,7 +30,7 @@ function HomePage() {
       // Pause
       timeout = setTimeout(() => {
         setIsDeleting(true);
-      }, 10000);
+      }, 5000);
     } else {
       // Switch to the next role after deleting the current one
       timeout = setTimeout(() => {
@@ -49,8 +46,13 @@ function HomePage() {
   return (
     <div className="Home">
       <div className='flexbox-content'>
-        <h1 className="flexbox-child1">test</h1>
-        <h1 className="flexbox-child2">test 1</h1>
+        <div className="flexbox-child1">
+          <h1>Hello, I&apos;m Taber!</h1>
+          <h2>{currentRole}</h2>
+        </div>
+        <div className="flexbox-child2">
+          <p className='glasscard'>testing</p>
+        </div>
       </div>
     </div>
   );
