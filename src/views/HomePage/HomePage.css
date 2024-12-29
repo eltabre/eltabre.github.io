@@ -57,23 +57,6 @@ nav ul li a:hover {
   flex: 2;
   /*background-color: antiquewhite;*/
   /*border: 1px solid antiquewhite;*/
-
-
   min-width: 500px;
   min-height: 350px;
-}
-
-.glasscard {
-  height: 60%;
-  margin-top: 10%;
-  background: rgba( 255, 255, 255, 0.55 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 16.5px );
-  -webkit-backdrop-filter: blur( 16.5px );
-  border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
-  text-align: right;
-  margin-left: auto;
-  padding-right: 2%;
-  padding-top: 2%;
 }

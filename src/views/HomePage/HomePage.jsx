@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import GlassPanelCarousel from '../../components/GlassPanel/GlassPanelCarousel';
 import './HomePage.css';
 
 const roles = ["Game Developer", "Software Engineer", "AI Researcher"];
@@ -51,7 +52,7 @@ function HomePage() {
           <h2>{currentRole}</h2>
         </div>
         <div className="flexbox-child2">
-          <p className='glasscard'>testing</p>
+          <GlassPanelCarousel />
         </div>
       </div>
     </div>
