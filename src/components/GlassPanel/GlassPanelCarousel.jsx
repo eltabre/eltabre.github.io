@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import GlassPanel from "./GlassPanel";
 
 
@@ -11,7 +11,7 @@ function GlassPanelCarousel() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % projectData.length);
-        }, 20000)
+        }, 2000000)
 
         return () => clearInterval(interval);
     }, [])

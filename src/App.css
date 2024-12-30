@@ -3,22 +3,24 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 2px; /* Length of the border line */
-  height: 95%; /* Thickness of the border line */
-  background: white; /* Color of the border line */
+  width: 2px; 
+  height: 95%; 
+  background: white; 
   margin-bottom: 2%;
   margin-left: 3%;
 }
 
 .App {
   display: flex;
+  flex-direction: column;
   align-items: flex-start; 
   justify-content: flex-start;
   gap: 20px;
   position: relative;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
   width: 100vw;
-  background: linear-gradient(to right, #494949, #32353C); /* Example gradient */
+  background: linear-gradient(to right, #494949, #32353C); 
+
 }
 
 .App::after {
@@ -26,15 +28,15 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 97.5%; /* Thickness of the border line */
-  height: 2px; /* Length of the border line */
-  background: white; /* Color of the border line */
+  width: 97.5%; 
+  height: 2px;
+  background: white; 
   margin-top: 3%;
   margin-right: 2%;
 }
 
 .Navigation {
-  margin-left: 5%; /* Adjust as needed */
+  margin-left: 5%;
   margin-top: 3%;
   flex-grow: 0;
 }
@@ -45,21 +47,28 @@
 }
 
 nav ul {
-  list-style: none; /* Remove default list styling */
-  padding: 0; /* Remove default padding */
+  list-style: none; 
+  padding: 0; 
 }
 
 nav ul li {
-  margin-bottom: 1em; /* Space out the links */
+  margin-bottom: 1em; 
 }
 
 nav ul li a {
-  text-decoration: none; /* Optional: removes the underline from links */
-  color: white; /* Adjust link color as needed */
+  text-decoration: none; 
+  color: white; 
 
-  /* Add more styles as needed */
 }
 
 nav ul li a:hover {
   color: rgb(9, 40, 216);
+}
+
+
+@media (max-width: 1100px) {
+  .App::before,
+  .App::after {
+    display: none; /* Hide the lines */
+  }
 }
