@@ -1,0 +1,120 @@
+/* ---------------------------------------------------------------------------
+   Design tokens — Trailhead (light) / Understory (dark)
+
+   Everything visual lives here. Nothing else in the site hardcodes a colour,
+   a font, or a spacing step. Swapping the whole look means editing this block.
+   --------------------------------------------------------------------------- */
+
+:root {
+	/* Trailhead — warm cream paper, moss, trail-marker orange */
+	--paper: #faf6ef;
+	--paper-raised: #f2ece1;
+	--ink: #2a2b26;
+	--ink-muted: #6b6a5f;
+	--moss: #4a6b4f;
+	--blaze: #c8622a;
+	--rule: #ddd5c7;
+
+	/* Type */
+	--font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+	--font-body: 'Newsreader', Georgia, 'Times New Roman', serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+	/* Scale */
+	--measure: 34rem;
+	--space-xs: 0.375rem;
+	--space-sm: 0.75rem;
+	--space-md: 1.5rem;
+	--space-lg: 3rem;
+	--space-xl: 6rem;
+
+	/* Blaze proportion — real trail blazes are 2:3 */
+	--blaze-width: 0.6rem;
+	--blaze-height: 0.9rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* Understory — forest floor, muted sage, amber */
+		--paper: #141815;
+		--paper-raised: #1d221e;
+		--ink: #e4e2d8;
+		--ink-muted: #9aa094;
+		--moss: #8ba888;
+		--blaze: #d9a441;
+		--rule: #2e3630;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 1.125rem;
+	line-height: 1.65;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-display);
+	font-weight: 600;
+	line-height: 1.2;
+	margin: 0 0 var(--space-sm);
+}
+
+h1 {
+	font-size: 2.25rem;
+}
+h2 {
+	font-size: 1.5rem;
+}
+h3 {
+	font-size: 1.2rem;
+}
+
+p {
+	margin: 0 0 var(--space-md);
+}
+
+a {
+	color: var(--moss);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 2px;
+}
+
+a:hover {
+	color: var(--blaze);
+}
+
+code,
+time,
+.meta {
+	font-family: var(--font-mono);
+	font-size: 0.85em;
+	color: var(--ink-muted);
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid var(--rule);
+	margin: var(--space-lg) 0;
+}
+
+/* The reading column. Posts and prose sit inside this; wide things opt out. */
+.measure {
+	max-width: var(--measure);
+	margin-inline: auto;
+}

@@ -1,0 +1,41 @@
+---
+---
+<header>
+    <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/about">About</a></li>
+    </ul>
+    </nav>
+</header>
+
+<style>
+    header {
+        border-bottom: 1px solid var(--rule);
+        padding: var(--space-md) var(--space-md) var(--space-sm);
+        margin-bottom: var(--space-lg);
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        display: flex;
+        gap: var(--space-md);
+        max-width: var(--measure);
+    }
+
+    nav a {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+        color: var(--ink-muted);
+        text-decoration: none;
+    }
+
+    nav a:hover {
+        color: var(--blaze);
+    }
+</style>
