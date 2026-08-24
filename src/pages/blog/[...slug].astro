@@ -1,0 +1,127 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts
+		.filter((post) => !post.data.draft)
+		.map((post) => ({
+			params: { slug: post.id },
+			props: { post },
+		}));
+}
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatted = post.data.date.toLocaleDateString('en-GB', {
+	year: 'numeric',
+	month: 'short',
+	day: 'numeric',
+	timeZone: 'UTC',
+});
+---
+
+<BaseLayout title={post.data.title}>
+	<article class="measure">
+		<header>
+			<time datetime={post.data.date.toISOString()}>{formatted}</time>
+			<h1>{post.data.title}</h1>
+			<p class="summary">{post.data.summary}</p>
+			{post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+		</header>
+
+		<div class="body">
+			<Content />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	header {
+		margin-bottom: var(--space-lg);
+		padding-bottom: var(--space-md);
+		border-bottom: 1px solid var(--rule);
+	}
+
+	time {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		margin-bottom: var(--space-xs);
+	}
+
+	h1 {
+		margin-bottom: var(--space-sm);
+	}
+
+	.summary {
+		margin: 0;
+		font-size: 1.05rem;
+		line-height: 1.5;
+		color: var(--ink-muted);
+	}
+
+	.tag {
+		display: inline-block;
+		margin: var(--space-sm) var(--space-xs) 0 0;
+		padding: 0.1rem 0.45rem;
+		border: 1px solid var(--rule);
+		border-radius: 2px;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.03em;
+		color: var(--ink-muted);
+	}
+
+	/* Markdown output does not carry Astro's scoping attribute, so styles
+	   aimed at it have to be marked :global. See the note in the review. */
+	.body :global(h2) {
+		margin-top: var(--space-lg);
+	}
+
+	.body :global(h3) {
+		margin-top: var(--space-md);
+	}
+
+	.body :global(blockquote) {
+		margin: var(--space-md) 0;
+		padding-left: var(--space-md);
+		border-left: 2px solid var(--moss);
+		color: var(--ink-muted);
+		font-style: italic;
+	}
+
+	.body :global(pre) {
+		margin: var(--space-md) 0;
+		padding: var(--space-md);
+		border: 1px solid var(--rule);
+		border-radius: 3px;
+		overflow-x: auto;
+		font-size: 0.85rem;
+		line-height: 1.5;
+	}
+
+	.body :global(:not(pre) > code) {
+		background: var(--paper-raised);
+		padding: 0.1rem 0.3rem;
+		border-radius: 2px;
+	}
+
+	.body :global(ul),
+	.body :global(ol) {
+		padding-left: var(--space-md);
+	}
+
+	.body :global(li) {
+		margin-bottom: var(--space-xs);
+	}
+</style>

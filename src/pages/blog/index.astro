@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const live = posts
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="Notes">
+	<div class="measure">
+		<h1>Notes</h1>
+		<ul>
+	        {live.map((post) => (
+                <li>
+                    <time datetime={post.data.date.toISOString()}>
+                        {post.data.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+                    </time>
+                    <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                    <p>{post.data.summary}</p>
+                    {post.data.tags.map((tag) => (<span class="tag">{tag}</span>))}
+                </li>
+	        ))}
+        </ul>
+	</div>
+</BaseLayout>
+
+<style>
+	h1 {
+		margin-bottom: var(--space-lg);
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* Each entry is a landform seen from above: nested level sets around a
+	   high point. Innermost line crisp, outer lines falling away. */
+	li {
+		background: var(--paper-raised);
+		padding: var(--space-md);
+		border-radius: 4px;
+		box-shadow:
+			0 0 0 1px var(--rule),
+			0 0 0 4px var(--paper),
+			0 0 0 5px color-mix(in srgb, var(--rule) 60%, transparent),
+			0 0 0 8px var(--paper),
+			0 0 0 9px color-mix(in srgb, var(--rule) 28%, transparent);
+		transition: box-shadow 160ms ease;
+	}
+
+	li:hover {
+		box-shadow:
+			0 0 0 1px var(--rule),
+			0 0 0 4px var(--paper),
+			0 0 0 5px color-mix(in srgb, var(--blaze) 45%, transparent),
+			0 0 0 8px var(--paper),
+			0 0 0 9px color-mix(in srgb, var(--blaze) 20%, transparent);
+	}
+
+	li + li {
+		margin-top: calc(var(--space-lg) + 0.5rem);
+	}
+
+	/* Date — mono, quiet, sitting above the title like a dateline */
+	time {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		margin-bottom: var(--space-xs);
+	}
+
+	/* Title — the thing you scan for. Ink, not link-green, until hovered. */
+	li > a {
+		display: block;
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 600;
+		line-height: 1.25;
+		color: var(--ink);
+		text-decoration: none;
+	}
+
+	li > a:hover {
+		color: var(--blaze);
+	}
+
+	/* Summary — one line of why you'd click */
+	p {
+		margin: var(--space-xs) 0 0;
+		font-size: 1rem;
+		line-height: 1.5;
+		color: var(--ink-muted);
+	}
+
+	.tag {
+		display: inline-block;
+		margin: var(--space-sm) var(--space-xs) 0 0;
+		padding: 0.1rem 0.45rem;
+		border: 1px solid var(--rule);
+		border-radius: 2px;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.03em;
+		color: var(--ink-muted);
+	}
+</style>
