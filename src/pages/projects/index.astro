@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { sortProjects, countShipped } from '../../lib/projects';
+import { legDirection, legPath } from '../../lib/trail';
 import ProjectCard from '../../components/ProjectCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -13,16 +14,49 @@ const shipped = countShipped(projects);
     <div class="measure">
         <h1>Projects</h1>
         <p class="count">{shipped} of {ordered_projects.length} shipped</p>
-
-        <ul>
-            {ordered_projects.map((project) => (
-                <li>
-                    <ProjectCard project={project} />
-                </li>
-            ))}
-        </ul>
     </div>
+
+    <ol class="trail">
+        {ordered_projects.map((project, index) => {
+            const leg = legDirection(index);
+            return (
+                <li class="stop">
+                    <div class="slot">
+                        <ProjectCard project={project} />
+                    </div>
+
+                    {index < ordered_projects.length - 1 && (
+                        <svg
+                            class="leg"
+                            data-leg={leg}
+                            viewBox="0 0 100 100"
+                            preserveAspectRatio="none"
+                            aria-hidden="true"
+                        >
+                            <path d={legPath(leg)} />
+                        </svg>
+                    )}
+                </li>
+            );
+        })}
+    </ol>
 </BaseLayout>
+
+<script>
+    import { legPath } from '../../lib/trail';
+
+    // The markup already carries a usable path baked in at build time. This
+    // only re-rolls it, so if the script never runs the trail still draws.
+    document.querySelectorAll<SVGSVGElement>('svg.leg').forEach((svg) => {
+        const leg = svg.dataset.leg;
+        if (leg !== 'lr' && leg !== 'rl') return;
+
+        const path = svg.querySelector('path');
+        if (!path) return;
+
+        path.setAttribute('d', legPath(leg));
+    });
+</script>
 
 <style>
     h1 {
@@ -38,18 +72,63 @@ const shipped = countShipped(projects);
         color: var(--ink-muted);
     }
 
-    ul {
+    /* The trail is wider than the reading column — it is a map, not prose. */
+    .trail {
         list-style: none;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-md);
+        max-width: 48rem;
+    }
+
+    .slot {
+        width: 46%;
+    }
+
+    /* Odd stops sit left, even stops sit right. */
+    .stop:nth-child(even) .slot {
+        margin-left: auto;
+    }
+
+    /* The box is 6rem tall so the curve has room to loop, but negative
+       margins claw most of that back, so it only costs 1.5rem of layout.
+       overflow:visible lets the loops spill beside the cards; z-index:-1
+       keeps the line behind them rather than over the top. */
+    .leg {
+        display: block;
+        position: relative;
+        z-index: -1;
+        width: 100%;
+        height: 6rem;
+        margin-block: -2.25rem;
+        overflow: visible;
+        pointer-events: none;
+    }
+
+    /* non-scaling-stroke keeps the line an even weight and the dashes evenly
+       spaced even though preserveAspectRatio="none" stretches the box. */
+    .leg path {
+        fill: none;
+        stroke: var(--blaze);
+        stroke-width: 1.5;
+        stroke-dasharray: 5 4;
+        stroke-linecap: round;
+        vector-effect: non-scaling-stroke;
     }
 
     @media (max-width: 40rem) {
-        ul {
-            grid-template-columns: 1fr;
+        .slot,
+        .stop:nth-child(even) .slot {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .leg {
+            height: 4rem;
+            margin-block: -1.25rem;
+        }
+
+        .leg path {
+            stroke-dasharray: 5 5;
         }
     }
 </style>
