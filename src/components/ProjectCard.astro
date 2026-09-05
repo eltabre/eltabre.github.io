@@ -1,0 +1,213 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import { STATUS_META } from '../lib/projects';
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const meta = STATUS_META[project.data.status];
+const { Content } = await render(project);
+---
+
+<div class="card">
+	<button type="button" class="tile">
+		<span class:list={['blaze', { filled: meta.filled }]} aria-hidden="true"></span>
+		<h3>{project.data.title}</h3>
+		<p>{project.data.tagline}</p>
+		<span class="status">{meta.label}</span>
+	</button>
+
+	<dialog>
+		<button type="button" class="close" aria-label="Close">&times;</button>
+
+		<h2>{project.data.title}</h2>
+		<p class="tagline">{project.data.tagline}</p>
+
+		<div class="primer">
+			<Content />
+		</div>
+
+		{project.data.stack.length > 0 && (
+			<ul class="stack">
+				{project.data.stack.map((item) => <li>{item}</li>)}
+			</ul>
+		)}
+
+		{(project.data.repo || project.data.demo || project.data.blogPost) && (
+			<p class="links">
+				{project.data.repo && <a href={project.data.repo}>Repo</a>}
+				{project.data.demo && <a href={project.data.demo}>Demo</a>}
+				{project.data.blogPost && <a href={project.data.blogPost}>Write-up</a>}
+			</p>
+		)}
+	</dialog>
+</div>
+
+<script>
+	// Runs once for the whole page, not once per card — so loop over all of them.
+	document.querySelectorAll<HTMLElement>('.card').forEach((card) => {
+		const openButton = card.querySelector<HTMLButtonElement>('button.tile');
+		const closeButton = card.querySelector<HTMLButtonElement>('button.close');
+		const dialog = card.querySelector<HTMLDialogElement>('dialog');
+
+		if (!openButton || !closeButton || !dialog) return;
+
+		openButton.addEventListener('click', () => dialog.showModal());
+		closeButton.addEventListener('click', () => dialog.close());
+
+		// Clicking the backdrop closes. The backdrop counts as the dialog itself,
+		// so this fires only when the click missed the content inside.
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog) dialog.close();
+		});
+	});
+</script>
+
+<style>
+	.card {
+		height: 100%;
+	}
+
+	/* Browsers style buttons heavily — this undoes all of it. */
+	.tile {
+		appearance: none;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: var(--space-md);
+		font: inherit;
+		color: inherit;
+		text-align: left;
+		cursor: pointer;
+
+		background: var(--paper-raised);
+		border: 1px solid var(--rule);
+		border-radius: 4px;
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+		transition: border-color 160ms ease;
+	}
+
+	.tile:hover {
+		border-color: var(--blaze);
+	}
+
+	/* Trail blaze — 2:3 proportion, filled if shipped, open if building */
+	.blaze {
+		display: block;
+		width: var(--blaze-width);
+		height: var(--blaze-height);
+		border: 1px solid var(--blaze);
+		border-radius: 1px;
+		margin-bottom: var(--space-xs);
+	}
+
+	.blaze.filled {
+		background: var(--blaze);
+	}
+
+	.tile h3 {
+		margin: 0;
+		font-size: 1.1rem;
+		line-height: 1.25;
+	}
+
+	.tile p {
+		margin: 0;
+		font-size: 0.95rem;
+		line-height: 1.45;
+		color: var(--ink-muted);
+	}
+
+	/* margin-top:auto pushes this to the bottom, so every tile's status
+	   line sits on the same baseline regardless of tagline length. */
+	.status {
+		margin-top: auto;
+		padding-top: var(--space-sm);
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--ink-muted);
+	}
+
+	dialog {
+		width: min(34rem, calc(100vw - 2rem));
+		padding: var(--space-lg);
+		background: var(--paper);
+		color: var(--ink);
+		border: 1px solid var(--rule);
+		border-radius: 4px;
+	}
+
+	dialog::backdrop {
+		background: rgb(0 0 0 / 0.55);
+	}
+
+	.close {
+		float: right;
+		appearance: none;
+		background: none;
+		border: 0;
+		padding: 0 0 0 var(--space-sm);
+		font-size: 1.5rem;
+		line-height: 1;
+		color: var(--ink-muted);
+		cursor: pointer;
+	}
+
+	.close:hover {
+		color: var(--blaze);
+	}
+
+	dialog h2 {
+		margin: 0 0 var(--space-xs);
+	}
+
+	.tagline {
+		margin: 0 0 var(--space-md);
+		color: var(--ink-muted);
+	}
+
+	.stack {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-xs);
+		margin: var(--space-md) 0 0;
+		padding: 0;
+	}
+
+	.stack li {
+		padding: 0.1rem 0.45rem;
+		border: 1px solid var(--rule);
+		border-radius: 2px;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		color: var(--ink-muted);
+	}
+
+	.links {
+		display: flex;
+		gap: var(--space-md);
+		margin: var(--space-md) 0 0;
+		padding-top: var(--space-md);
+		border-top: 1px solid var(--rule);
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+	}
+
+	/* Markdown output carries no scoping attribute — see the blog post page. */
+	.primer :global(p) {
+		margin: 0 0 var(--space-sm);
+	}
+
+	.primer :global(p:last-child) {
+		margin-bottom: 0;
+	}
+</style>
