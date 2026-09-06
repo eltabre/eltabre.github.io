@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Not found">
+	<div class="measure">
+		<p class="code">404</p>
+		<h1>Off the trail</h1>
+		<p>
+			There's nothing at this address. It may have moved, or it may never have
+			existed.
+		</p>
+		<p>
+			<a href="/">Back to the start</a> · <a href="/blog">Notes</a> ·
+			<a href="/projects">Projects</a>
+		</p>
+	</div>
+</BaseLayout>
+
+<style>
+	.code {
+		margin: 0 0 var(--space-xs);
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		color: var(--ink-muted);
+	}
+</style>
