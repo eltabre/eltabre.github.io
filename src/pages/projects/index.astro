@@ -1,55 +1,34 @@
 ---
 import { getCollection } from 'astro:content';
 import { sortProjects, countShipped } from '../../lib/projects';
-import ProjectCard from '../../components/ProjectCard.astro';
+import BadgeGrid from '../../components/BadgeGrid.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const projects = await getCollection('projects');
-const ordered_projects = sortProjects(projects);
+const ordered = sortProjects(projects);
 const shipped = countShipped(projects);
 ---
 
 <BaseLayout title="Projects">
-    <div class="measure">
-        <h1>Projects</h1>
-        <p class="count">{shipped} of {ordered_projects.length} shipped</p>
+	<div class="wide">
+		<h1>Projects</h1>
+		<p class="count">{shipped} of {ordered.length} shipped</p>
 
-        <ul>
-            {ordered_projects.map((project) => (
-                <li>
-                    <ProjectCard project={project} />
-                </li>
-            ))}
-        </ul>
-    </div>
+		<BadgeGrid projects={ordered} />
+	</div>
 </BaseLayout>
 
 <style>
-    h1 {
-        margin-bottom: var(--space-xs);
-    }
+	h1 {
+		margin-bottom: var(--space-xs);
+	}
 
-    .count {
-        margin: 0 0 var(--space-lg);
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--ink-muted);
-    }
-
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-md);
-    }
-
-    @media (max-width: 40rem) {
-        ul {
-            grid-template-columns: 1fr;
-        }
-    }
+	.count {
+		margin: 0 0 var(--space-lg);
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+	}
 </style>

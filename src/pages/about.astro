@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import portrait from '../assets/taber-and-dog.jpg';
+
+const contacts = [
+	{ label: 'GitHub', href: 'https://github.com/eltabre' },
+	{ label: 'Email', href: 'mailto:taberfish@gmail.com' },
+];
+---
+
+<BaseLayout title="About">
+	<div class="measure">
+		<div class="intro">
+			<Image
+				class="portrait"
+				src={portrait}
+				alt="Taber Fisher and his dog on a trail in the Colorado foothills"
+				width={240}
+				densities={[1, 2]}
+				loading="eager"
+			/>
+			<h1>About</h1>
+		</div>
+
+		<p>
+			I'm Taber Fisher, a senior AI/ML engineer in Fort Collins, Colorado. I've
+			spent six years on computer vision for overhead imagery — currently
+			leading a vision team at Lockheed Martin Autonomous Systems working on
+			backbones and training strategies for panoptic segmentation. Before that
+			I led Object-Level Change Detection, a real-time system for spotting what
+			changed between two passes over the same ground, and started out on SAR
+			automatic target recognition.
+		</p>
+
+		<p>
+			The way I actually work is by reading widely and looking for things that
+			transfer. Rendering tricks from game development turn out to be useful for
+			real-time inference. That habit is also why this site is drawn as contour
+			lines: a topographic map and a loss landscape are the same object — level
+			sets of a function of two variables — which is a real mathematical fact
+			rather than a theme I picked because it looked nice.
+		</p>
+
+		<p>
+			M.S. in Machine Learning from Georgia Tech, B.S. in Computer Science from
+			Virginia Tech. Three published papers, two at SPIE Defense + Commercial
+			Sensing on change detection and classifier performance on low-resolution
+			overhead imagery, one at GlobalSIP on EEG classifiers. Outside work it's
+			mostly hiking, Blender, and Godot.
+		</p>
+
+		<ul class="contacts">
+			{contacts.map((contact) => (
+				<li><a href={contact.href}>{contact.label}</a></li>
+			))}
+		</ul>
+	</div>
+</BaseLayout>
+
+<style>
+	.intro {
+		display: flex;
+		align-items: center;
+		gap: var(--space-md);
+		margin-bottom: var(--space-md);
+	}
+
+	.intro h1 {
+		margin: 0;
+	}
+
+	/* object-fit: cover crops rather than squashes; object-position pulls the
+	   crop down the tall portrait so both faces land inside the circle. */
+	.portrait {
+		flex-shrink: 0;
+		width: 96px;
+		height: 96px;
+		border-radius: 50%;
+		object-fit: cover;
+		object-position: 50% 58%;
+		border: 1px solid var(--rule);
+	}
+
+	.contacts {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-md);
+		margin: var(--space-lg) 0 0;
+		padding-top: var(--space-md);
+		border-top: 1px solid var(--rule);
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+	}
+</style>

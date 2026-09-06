@@ -1,9 +1,142 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BadgeGrid from '../components/BadgeGrid.astro';
+import { sortProjects, countShipped } from '../lib/projects';
+
+const allProjects = await getCollection('projects');
+const orderedProjects = sortProjects(allProjects);
+
+// Home shows up to four hand-picked projects, in `order`. If nothing is
+// flagged, fall back to the first four so the section is never silently empty.
+const featuredProjects = orderedProjects.filter((project) => project.data.featured);
+const homeProjects = (featuredProjects.length > 0 ? featuredProjects : orderedProjects).slice(0, 4);
+const shippedCount = countShipped(allProjects);
+
+const posts = await getCollection('blog');
+const [latest] = posts
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<BaseLayout title="Test Site" >
-	<div class="measure">
-		<h1>Welcome to my Astro site!</h1>
+<BaseLayout title="eltabre">
+	<div class="wide">
+		<h1 class="hero">
+			I teach machines to read the ground from above.
+		</h1>
+		<p class="lede">
+			Taber Fisher — senior AI/ML engineer working on computer vision for
+			overhead imagery. Notes are the main event here: build logs, papers worked
+			through, and things I got wrong the first time. Projects are the evidence.
+		</p>
 	</div>
+
+	<section class="block">
+		<div class="wide heading">
+			<h2>Projects</h2>
+			<p class="meta">
+				{shippedCount} of {allProjects.length} shipped ·
+				<a href="/projects">all projects</a>
+			</p>
+		</div>
+		<div class="wide">
+			<BadgeGrid projects={homeProjects} />
+		</div>
+	</section>
+
+	<section class="block">
+		<div class="wide">
+			<h2>Latest note</h2>
+			{latest ? (
+				<article class="latest">
+					<time datetime={latest.data.date.toISOString()}>
+						{latest.data.date.toLocaleDateString('en-GB', {
+							year: 'numeric',
+							month: 'short',
+							day: 'numeric',
+							timeZone: 'UTC',
+						})}
+					</time>
+					<a class="latest-title" href={`/blog/${latest.id}`}>{latest.data.title}</a>
+					<p>{latest.data.summary}</p>
+				</article>
+			) : (
+				<p class="empty">Nothing published yet — first notes coming soon.</p>
+			)}
+			<p class="meta"><a href="/blog">All notes</a></p>
+		</div>
+	</section>
 </BaseLayout>
+
+<style>
+	.hero {
+		font-size: 2rem;
+		line-height: 1.15;
+		margin-bottom: var(--space-md);
+	}
+
+	.lede {
+		font-size: 1.05rem;
+		color: var(--ink-muted);
+		margin-bottom: 0;
+	}
+
+	.block {
+		margin-top: var(--space-xl);
+	}
+
+	/* The grid is wider than the reading column, so its heading has to sit in
+	   the column on its own rather than wrapping the whole section. */
+	.heading {
+		margin-bottom: var(--space-md);
+	}
+
+	h2 {
+		margin-bottom: var(--space-xs);
+	}
+
+	.meta {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+	}
+
+	.latest time {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		margin-bottom: var(--space-xs);
+	}
+
+	.latest-title {
+		display: block;
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 600;
+		line-height: 1.25;
+		color: var(--ink);
+		text-decoration: none;
+	}
+
+	.latest-title:hover {
+		color: var(--blaze);
+	}
+
+	.empty {
+		margin: 0 0 var(--space-md);
+		color: var(--ink-muted);
+	}
+
+	.latest p {
+		margin: var(--space-xs) 0 var(--space-md);
+		font-size: 1rem;
+		line-height: 1.5;
+		color: var(--ink-muted);
+	}
+</style>

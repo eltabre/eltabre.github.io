@@ -22,6 +22,7 @@
 
 	/* Scale */
 	--measure: 34rem;
+	--measure-wide: 44rem;
 	--space-xs: 0.375rem;
 	--space-sm: 0.75rem;
 	--space-md: 1.5rem;
@@ -116,5 +117,12 @@ hr {
 /* The reading column. Posts and prose sit inside this; wide things opt out. */
 .measure {
 	max-width: var(--measure);
+	margin-inline: auto;
+}
+
+/* The opt-out. Grids and other non-prose blocks need more room than 34rem,
+   but a page should pick one column and stick to it so left edges line up. */
+.wide {
+	max-width: var(--measure-wide);
 	margin-inline: auto;
 }

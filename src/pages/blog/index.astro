@@ -11,6 +11,14 @@ const live = posts
 <BaseLayout title="Notes">
 	<div class="measure">
 		<h1>Notes</h1>
+
+		{live.length === 0 && (
+			<p class="empty">
+				Nothing here yet. Build logs, papers worked through, and things I got
+				wrong the first time — coming soon.
+			</p>
+		)}
+
 		<ul>
 	        {live.map((post) => (
                 <li>
@@ -29,6 +37,10 @@ const live = posts
 <style>
 	h1 {
 		margin-bottom: var(--space-lg);
+	}
+
+	.empty {
+		color: var(--ink-muted);
 	}
 
 	ul {
