@@ -25,12 +25,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Installs dependencies, runs `astro build`, and uploads dist/ as the
-      # Pages artifact. Astro maintain this action, so it tracks their build.
-      - name: Build
-        uses: withastro/action@v3
+      # Astro 7 needs >=22.12; the runner default is older. `cache: npm` reuses
+      # the download cache between runs.
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
           node-version: 24
+          cache: npm
+
+      # `ci` not `install` — installs exactly what package-lock.json pins, and
+      # fails if the lockfile is out of sync.
+      - name: Install
+        run: npm ci
+
+      # The gate. `astro build` does not typecheck, so without this a type
+      # error would deploy happily.
+      - name: Typecheck
+        run: npx astro check
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     needs: build

@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Working docs — kept locally, not published to the repo
+BUILD-BRIEF.md
+DESIGN-NOTES.md

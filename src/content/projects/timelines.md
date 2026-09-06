@@ -9,12 +9,4 @@ repo: "https://github.com/eltabre/timelines"
 demo: "https://cartanota.web.app/"
 ---
 
-History is usually taught as a list of dates, which hides the fact that most of
-it is about places. This is an attempt at the other arrangement: put events on a
-map first and let the chronology come second.
-
-The MVP is narrow on purpose — find and pick history podcasts by the part of the
-world they cover. Right now you can explore the maps that exist; drawing your
-own, public maps, accounts, and search are the next steps.
-
-It's a rebuild of an earlier version of the same idea, on better foundations.
+History is usually taught as a list of dates and is not as interactive as I would like. This is an attempt to allow people to click through and make their own visualizations of history. The current implementation shows a couple of curated maps where I found geoJSON of historical borders. I am working on fine-tuning and giving users a better ability to query historical databases and use components to build maps.
