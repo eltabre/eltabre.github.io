@@ -9,11 +9,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "contours": "node scripts/generate-contours.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
     "astro": "^7.1.6",
     "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "d3-contour": "^4.0.2"
   }
 }

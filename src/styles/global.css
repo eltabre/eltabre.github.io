@@ -126,3 +126,69 @@ hr {
 	max-width: var(--measure-wide);
 	margin-inline: auto;
 }
+
+/* ---------------------------------------------------------------------------
+   Contour background
+
+   Real elevation data, traced to SVG at build time by scripts/generate-contours.mjs
+   and selected by a `data-field` attribute on <html>. The markup carries a
+   default, so if the picker script never runs nothing visible changes.
+   --------------------------------------------------------------------------- */
+
+:root {
+	--contour-image: url('/contours/yosemite.svg');
+	--contour-strength: 0.16;
+}
+
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+
+	background-image: var(--contour-image);
+	background-size: cover;
+	background-position: center;
+	opacity: var(--contour-strength);
+
+	/* Knock the texture out of the reading column, the way a map breaks its
+	   contour lines where a label crosses them. Full strength at the edges,
+	   about 15% behind the centre. Do not blur — blurring makes grey fog. */
+	-webkit-mask-image: linear-gradient(
+		to right,
+		#000 0%,
+		#000 20%,
+		rgb(0 0 0 / 0.15) 38%,
+		rgb(0 0 0 / 0.15) 62%,
+		#000 80%,
+		#000 100%
+	);
+	mask-image: linear-gradient(
+		to right,
+		#000 0%,
+		#000 20%,
+		rgb(0 0 0 / 0.15) 38%,
+		rgb(0 0 0 / 0.15) 62%,
+		#000 80%,
+		#000 100%
+	);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--contour-strength: 0.22;
+	}
+
+	/* The linework is black in the source files; invert rather than shipping a
+	   second set. Alpha is untouched, so only the strokes flip. */
+	body::before {
+		filter: invert(1);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	body::before {
+		transition: opacity 400ms ease;
+	}
+}

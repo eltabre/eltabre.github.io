@@ -1,13 +1,16 @@
 ---
 import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
+import MapKey from '../components/MapKey.astro';
+import '../styles/contours.css';
+import { PLACES } from '../lib/places';
 
 interface Props {
 	title: string;
 }
 const {title} = Astro.props;
 ---
-<html lang="en">
+<html lang="en" data-field="yosemite">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -18,9 +21,20 @@ const {title} = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+
+		<!-- Picks which terrain is drawn behind the page. Inline and in <head> so
+		     it runs before first paint; the attribute above is a working default,
+		     so a failure here changes nothing. -->
+		<script is:inline define:vars={{ fields: PLACES.map((place) => place.slug) }}>
+			try {
+				document.documentElement.dataset.field =
+					fields[Math.floor(Math.random() * fields.length)];
+			} catch {}
+		</script>
 	</head>
 	<body>
 		<SiteHeader />
 		<slot />
+		<MapKey />
 	</body>
 </html>
