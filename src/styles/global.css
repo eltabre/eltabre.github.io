@@ -152,25 +152,31 @@ body::before {
 	background-position: center;
 	opacity: var(--contour-strength);
 
-	/* Knock the texture out of the reading column, the way a map breaks its
-	   contour lines where a label crosses them. Full strength at the edges,
-	   about 15% behind the centre. Do not blur — blurring makes grey fog. */
+	/* Knock the texture out of wherever the content actually is, the way a map
+	   breaks its contour lines where a label crosses them. The stops are derived
+	   from the column width rather than guessed percentages, so on a phone — where
+	   the viewport is narrower than the column — every stop collapses to zero and
+	   the whole width is knocked back, which is correct, because the text fills it.
+	   Do not blur instead; blurring makes grey fog. */
+	--contour-clear: 0.15;
+	--contour-feather: 5rem;
+
 	-webkit-mask-image: linear-gradient(
 		to right,
-		#000 0%,
-		#000 20%,
-		rgb(0 0 0 / 0.15) 38%,
-		rgb(0 0 0 / 0.15) 62%,
-		#000 80%,
+		#000 0,
+		#000 calc(50% - var(--measure-wide) / 2 - var(--contour-feather)),
+		rgb(0 0 0 / var(--contour-clear)) calc(50% - var(--measure-wide) / 2),
+		rgb(0 0 0 / var(--contour-clear)) calc(50% + var(--measure-wide) / 2),
+		#000 calc(50% + var(--measure-wide) / 2 + var(--contour-feather)),
 		#000 100%
 	);
 	mask-image: linear-gradient(
 		to right,
-		#000 0%,
-		#000 20%,
-		rgb(0 0 0 / 0.15) 38%,
-		rgb(0 0 0 / 0.15) 62%,
-		#000 80%,
+		#000 0,
+		#000 calc(50% - var(--measure-wide) / 2 - var(--contour-feather)),
+		rgb(0 0 0 / var(--contour-clear)) calc(50% - var(--measure-wide) / 2),
+		rgb(0 0 0 / var(--contour-clear)) calc(50% + var(--measure-wide) / 2),
+		#000 calc(50% + var(--measure-wide) / 2 + var(--contour-feather)),
 		#000 100%
 	);
 }
