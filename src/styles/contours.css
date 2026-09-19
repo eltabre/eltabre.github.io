@@ -31,3 +31,11 @@
 :root[data-field='grand-teton'] .key [data-for='grand-teton'] {
 	display: block;
 }
+
+:root[data-field='medicine-bow'] {
+	--contour-image: url('/contours/medicine-bow.svg');
+}
+
+:root[data-field='medicine-bow'] .key [data-for='medicine-bow'] {
+	display: block;
+}

@@ -57,4 +57,13 @@ export const PLACES: Place[] = [
 		zoom: 11,
 		note: '',
 	},
+	{
+		slug: 'medicine-bow',
+		name: 'Medicine Bow National Forest',
+		region: 'Wyoming',
+		lat: 41.357,
+		lon: -106.317,
+		zoom: 11,
+		note: '',
+	},
 ];
